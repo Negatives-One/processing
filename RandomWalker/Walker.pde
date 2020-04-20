@@ -1,31 +1,26 @@
 class Walker {
-  int x, y, px, py;
-  int dist = 1;
+  int x, y;
 
   Walker() {
     this.x = width/2;
     this.y = height/2;
-    this.px = x;
-    this.py = y;
   }
 
   void render() {
     stroke(0);
-    line(x, y, px, py);
-    px = x;
-    py = y;
+    point(x, y);
   }
 
   void walk() {
     int Choice = int(random(4));
     if (Choice == 0) {
-      x+= dist;
+      x++;
     } else if (Choice == 1) {
-      x-= dist;
+      x--;
     } else if (Choice == 2) {
-      y+= dist;
+      y++;
     } else {
-      y-= dist;
+      y--;
     }
 
     x = constrain(x, 0, width-1);
