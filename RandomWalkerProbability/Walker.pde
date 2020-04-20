@@ -12,12 +12,12 @@ class Walker {
   }
 
   void walk() {
-    int Choice = int(random(100)) + 1;
-    if (Choice < 40) {
+    float Choice = random(1);
+    if (Choice < 0.4) {
       x++;
-    } else if (Choice < 60) {
+    } else if (Choice < 0.6) {
       x--;
-    } else if (Choice < 80) {
+    } else if (Choice < 0.8) {
       y++;
     } else {
       y--;
