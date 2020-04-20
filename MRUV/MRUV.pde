@@ -3,7 +3,6 @@ float vAtualx = 200, vAtualy = 200;
 float dAtualx, dAtualy , aceleracaox = 0, aceleracaoy = -100;
 
 void setup() {
-  println(v.normalize());
   size(800, 800);
   frameRate(60);
 }
