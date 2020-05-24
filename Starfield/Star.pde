@@ -8,8 +8,8 @@ class Star {
 
     if (Pos.z < 1) {
       Pos.z = width;
-      Pos.x = random(-width, width);
-      Pos.y = random(-height, height);
+      Pos.x = random(-width/2, width/2);
+      Pos.y = random(-height/2, height/2);
     }
   }
 
@@ -24,6 +24,6 @@ class Star {
   }
 
   Star() {
-    Pos = new PVector(random(-width, width), random(-height, height), random(width));
+    Pos = new PVector(random(-width/2, width/2), random(-height/2, height/2), random(width));
   }
 }
