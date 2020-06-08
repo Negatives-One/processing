@@ -1,6 +1,6 @@
 class Missile {
   PVector Pos, Vel, Acel, Target, steer;
-  float steerForce = 0.1, speed = 10;
+  float steerForce = 0.05, speed = 10;
 
 
 
