@@ -7,7 +7,7 @@ void setup() {
 
 void draw() {
   background(0);
-  a += 1 / r;
+  a += 0.01;
   float x = r * cos(a);
   float y = r * sin(a);
   translate(width/2, height/2);
