@@ -9,6 +9,7 @@ void setup() {
   oldPos1 = pos1.copy();
   pos2 = new PVector(-width/2, 0);
   oldPos2 = pos2.copy();
+  smooth(8);
 }
 
 void draw() {
@@ -20,7 +21,6 @@ void draw() {
   pos2.x += speed;
   angle2 += -angleSpeed;
   strokeWeight(8);
-  smooth();
   line(pos2.x, pos2.y, oldPos2.x, oldPos2.y);
   line(pos1.x, pos1.y, oldPos1.x, oldPos1.y);
   oldPos2 = pos2.copy();
