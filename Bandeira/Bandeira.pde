@@ -4,6 +4,7 @@ boolean inflate = true;
 
 void setup() {
   size(1000, 600);
+  surface.setResizable(true);
   flag = new brasil();
 }
 
