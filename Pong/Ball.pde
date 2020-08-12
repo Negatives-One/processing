@@ -1,6 +1,6 @@
 class Ball {
   PVector pos, oPos, vel, acel, size;
-  float speed = 10;
+  float speed = 15;
 
   void update() {
     if(isStart){
@@ -48,12 +48,16 @@ class Ball {
       pos.x = width/2;
       pos.y = height/2;
       addForce(PVector.random2D().normalize());
+      isStart = true;
+      vel = new PVector(0, 0);
     }
     if (pos.x > width) {
       leftScore += 1;
       pos.x = width/2;
       pos.y = height/2;
       addForce(PVector.random2D().normalize());
+      isStart = true;
+      vel = new PVector(0, 0);
     }
   }
 

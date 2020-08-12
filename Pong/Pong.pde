@@ -1,9 +1,13 @@
 Bar[] barras = new Bar[2];
 Ball bola = new Ball();
 
+boolean once = true;
+
 boolean isStart = true;
 int initialTime;
 int time;
+int adjustTime = 0;
+int interval = 3;
 
 int leftScore = 0;
 int rightScore = 0;
@@ -34,15 +38,12 @@ void setup() {
 }
 
 void draw() {
-  if(isStart == false){
-    startMatch();
-  }
   updateScore();
   fill(255, 255, 255, 50);
   rect(width/2, height/2, width, height);
   barras();
   bolinha();
-  if(isStart == true){
+  if (isStart == true) {
     fill(255);
     rect(width/2, height/2, 20, 20);
     startMatch();
@@ -57,20 +58,30 @@ void barras() {
 }
 
 void startMatch() {
-  if (isStart == false) {
+  if (once && isStart) {
+    once = false;
+    interval += millis()/1000;
+    while (interval - millis()/1000 != 3) {
+      interval--;
+    }
+  }
+  if (isStart == true) {
     fill(#D61A1D);
     textSize(50);
-    time = millis() / 1000;
-    text(time, width/2, 50);
+    time = interval-int(millis()/1000);
+    if (time == 0) {
+      text("GO!", width/2, height/2);
+    } else {
+      if (time > -1) {
+        text(time, width/2, height/2);
+      }
+    }
+  } else {
+    adjustTime = millis()/1000;
   }
-  else{
-   fill(#D61A1D);
-    textSize(100);
-    time = millis() / 1000;
-    text(time, width/2, height/2); 
-  }
-  if (time > initialTime + 2 && isStart == true) {
+  if (time == -1 && isStart == true) {
     isStart = false;
+    once = true;
     bola.addForce(PVector.random2D().normalize());
   }
 }
