@@ -1,6 +1,6 @@
 class Ball {
   PVector pos, oPos, vel, acel, size;
-  float speed = 15;
+  float speed = 10;
 
   void update() {
     if(isStart){

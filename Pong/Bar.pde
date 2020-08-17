@@ -1,8 +1,13 @@
 class Bar {
   PVector pos, size;
-  float speed = 6;
+  float speed = 4;
   boolean isLeft;
-
+  
+  boolean goUp = false;
+  boolean goDown = false;
+  
+  float angle = 0;
+  
   void setInitials(PVector position, PVector measure) {
     pos = position.copy();
     size = measure.copy();
@@ -20,17 +25,11 @@ class Bar {
   }
 
   void controll() {
-    if (isLeft) {
-      if (keyPressed) {
-        if ((keyCode == DOWN) && pos.y + size.y/2 < height) {
-          pos.y += speed;
-        }
-        if ((keyCode == UP) && pos.y - size.y/2 > 0) {
-          pos.y -= speed;
-        }
-      }
-    } else {
-      pos.y = bola.pos.y;
+    if(this.goUp && (pos.y - size.y/2) > 0){
+    pos.y -= speed;
+    }
+    if(this.goDown && (pos.y + size.y/2) < height){
+    pos.y += speed;
     }
   }
 

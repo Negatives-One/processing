@@ -12,6 +12,9 @@ int interval = 3;
 int leftScore = 0;
 int rightScore = 0;
 
+Bar LeftBar;
+Bar RightBar;
+
 void setup() {
   textAlign(CENTER, CENTER);
   initialTime = millis() / 1000;
@@ -29,9 +32,11 @@ void setup() {
     if (i == 0) {
       barras[i].setInitials(new PVector(100, height/2), new PVector(15, 150));
       barras[i].isLeft = true;
+      LeftBar = barras[i];
     } else {
       barras[i].setInitials(new PVector(width - 100, height/2), new PVector(15, 150));
       barras[i].isLeft = false;
+      RightBar = barras[i];
     }
   }
   background(0);
@@ -42,7 +47,7 @@ void draw() {
   fill(255, 255, 255, 50);
   rect(width/2, height/2, width, height);
   barras();
-  bolinha();
+  bola.update();
   if (isStart == true) {
     fill(255);
     rect(width/2, height/2, 20, 20);
@@ -93,6 +98,33 @@ void updateScore() {
   text(rightScore, width - 50, 50);
 }
 
-void bolinha() {
-  bola.update();
+void keyPressed() {
+    if (key == 'w') {
+      LeftBar.goUp = true;
+    }
+    if (key == 's') {
+      LeftBar.goDown = true;
+    }
+
+  if (keyCode == UP) {
+    RightBar.goUp = true;
+  }
+  if (keyCode == DOWN) {
+    RightBar.goDown = true;
+  }
+}
+
+void keyReleased() {
+  if (key == 'w') {
+    LeftBar.goUp = false;
+  }
+  if (key == 's') {
+    LeftBar.goDown = false;
+  }
+  if (keyCode == UP) {
+    RightBar.goUp = false;
+  }
+  if (keyCode == DOWN) {
+    RightBar.goDown = false;
+  }
 }
