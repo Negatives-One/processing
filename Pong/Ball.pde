@@ -12,6 +12,9 @@ class Ball {
     render();
     makeScore();
     oPos = pos.copy();
+    if(speed < 10){
+    speed += 0.1;  
+    }
   }
 
   void render() {

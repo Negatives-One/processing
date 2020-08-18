@@ -88,6 +88,7 @@ void startMatch() {
     isStart = false;
     once = true;
     bola.addForce(PVector.random2D().normalize());
+    bola.speed = 5;
   }
 }
 
