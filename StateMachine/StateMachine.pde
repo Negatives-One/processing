@@ -2,10 +2,10 @@ final int PARADO = 0;
 final int MARTELANDO = 1;
 final int ATIRANDO = 2;
 
-PImage imgParado[] = new PImage[3], imgMartelando[] = new PImage[10], imgAtirando[] = new PImage[5];
-boolean Atira, Martela;
+PImage imgParado[] = new PImage[4], imgMartelando[] = new PImage[11], imgAtirando[] = new PImage[6];
 
 int estadoPlayer = PARADO;
+int estadoAnterior;
 
 int imageSize = 400;
 
@@ -30,11 +30,12 @@ void setup() {
 
 void draw() {
   background(0);
-  //MEF();
+  MEF();
   mostraPlayer(estadoPlayer);
   frameManager();
-  text(frame, 100, 100);
-  text(estadoPlayer, 100, 150);
+  text("Frame: " + str(frame), 100, 100);
+  text("State: " + str(estadoPlayer), 100, 150);
+  text("Previous Animation: " + str(estadoAnterior), 100, 200);
 }
 
 void mostraPlayer(int estado) {
@@ -47,54 +48,49 @@ void mostraPlayer(int estado) {
   }
 }
 
-/*
+
 void MEF() {
-  if (keyPressed == true) {
-    if (key == ' ') {
-      estadoPlayer = MARTELANDO;
+  estadoAnterior = estadoPlayer;
+  if (keyPressed) {
+    if (key == 's' && estadoPlayer != ATIRANDO) {
+      ChangePlayerState(MARTELANDO);
+    } else if (key == 'a' && estadoPlayer != MARTELANDO) {
+      ChangePlayerState(ATIRANDO);
     }
-  } else {
-    estadoPlayer = PARADO;
+  }
+  if (estadoAnterior != estadoPlayer)
+    frame = 0;
+}
+
+void ChangePlayerState(int State) {
+  estadoPlayer = State;
+}
+
+void ChangeAnimation() {
+  if (estadoAnterior != estadoPlayer) {
+    estadoAnterior = estadoPlayer;
   }
 }
-*/
 
 void frameManager() {
   switch(estadoPlayer) {
   case 0:
     frame = (frame + 1) % imgParado.length;
+    if (frame == 0) {
+      ChangePlayerState(PARADO);
+    }
     break;
   case 1:
     frame = (frame + 1) % imgMartelando.length;
+    if (frame == 0) {
+      ChangePlayerState(PARADO);
+    }
     break;
   case 2:
     frame = (frame + 1) % imgAtirando.length;
+    if (frame == 0) {
+      ChangePlayerState(PARADO);
+    }
     break;
-  }
-}
-
-void keyPressed() {
-  if (key == 'a') {
-    estadoPlayer = ATIRANDO;
-    Atira = true;
-    Martela = false;
-  }
-  if (key == 's') {
-    estadoPlayer = MARTELANDO;
-    Martela = true;
-    Atira = false;
-  }
-}
-
-void keyReleased() {
-  if (key == 'a') {
-    Atira = false;
-  }
-  if (key == 's') {
-    Martela = false;
-  }
-  if (!Atira && !Martela) {
-    frame = 0;
-    estadoPlayer = PARADO;
   }
 }
