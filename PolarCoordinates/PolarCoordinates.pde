@@ -23,8 +23,8 @@ void draw() {
   float y = r * sin(a);
   
   /*
-  Na linha 23 acontece a mesma coisa, mas agora para definir o eixo Y
-  e sendo calculado com a função "sin()" que vai calcular o seno do angulo.
+  Na linha 23 acontece quase a mesma coisa do que a linha 11, mas agora
+  para definir o eixo Y está sendo calculada a posição com a função "sin()" que vai calcular o seno do angulo.
   */
   
   translate(width/2, height/2);
