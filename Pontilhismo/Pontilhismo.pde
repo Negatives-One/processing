@@ -2,7 +2,7 @@ import java.util.*;
 
 PImage original, img, img2 = createImage(732, 1025, RGB);
 
-int g = 9;
+int g = 5;
 
 void setup() {
   fill(0);
@@ -29,7 +29,7 @@ void quantos() {
       int value = round(mediaVizinha(img2, x, y, g));
       int h = round(map(value, 255, 1, 1, g*g));
       println(h);
-      circle(x, y, 1);
+      //circle(x, y, 1);
 
       ArrayList<PVector> points = new ArrayList<PVector>();
 
