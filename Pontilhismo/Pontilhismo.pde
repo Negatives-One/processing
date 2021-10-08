@@ -2,7 +2,7 @@ import java.util.*;
 
 PImage original, img, img2 = createImage(732, 1025, RGB);
 
-int g = 5;
+int g = 3;
 
 void setup() {
   fill(0);
