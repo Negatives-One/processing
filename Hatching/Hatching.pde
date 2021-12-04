@@ -1,6 +1,8 @@
 PImage original, img, img2 = createImage(732, 1025, RGB);
 
-int g = 11;
+int g = 17;
+
+boolean once = true;
 
 public void setup() {
   size(732, 1025);
@@ -25,6 +27,10 @@ public void draw() {
       g -= 2;
       UpdateImage();
     }
+  }
+  if(once){
+    once = false;
+    save("result.png");
   }
 }
 

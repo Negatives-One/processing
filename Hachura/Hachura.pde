@@ -2,7 +2,7 @@ PImage img;
 PImage img2 = createImage(800, 450, RGB);
 int somaT;
 
-int g = 5;
+int g = 11;
 
 ArrayList<Rabisco> rabiscos = new ArrayList<Rabisco>(1);
 
@@ -10,7 +10,7 @@ void setup() {
   size(800, 450);
   //noStroke();
   fill(0);
-  background(255);
+  background(0);
   rectMode(CENTER);
   img = loadImage("mary.jpg");
   for (int y = 0; y < height; y++) {

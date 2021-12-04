@@ -52,7 +52,7 @@ class Rabisco {
       yb = map(i, 0, nbLines, y2, y4);
       line(xa, ya, xb, yb);
     }
-    /*for (int i=0; i<nbLines; i++) {
+    for (int i=0; i<nbLines; i++) {
       xa = map(i, 0, nbLines, x3, x2);
       ya = map(i, 0, nbLines, y3, y2);
       xb = map(i, 0, nbLines, x4, x2);
@@ -65,6 +65,6 @@ class Rabisco {
       xb = map(i, 0, nbLines, x4, x1);
       yb = map(i, 0, nbLines, y4, y1);
       line(xa, ya, xb, yb);
-    }*/
+    }
   }
 }

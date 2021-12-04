@@ -13,10 +13,10 @@ class Missile {
   }
 
   PVector seek() {
-    PVector alvo = Target.sub(Pos);
-    alvo.normalize();
-    alvo.mult(speed);
-    steer = alvo.sub(Vel);
+    PVector desiredVelocity = Target.sub(Pos);
+    desiredVelocity.normalize();
+    desiredVelocity.mult(speed);
+    steer = desiredVelocity.sub(Vel);
     steer.normalize();
     steer.mult(steerForce);
     return steer;
