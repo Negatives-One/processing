@@ -1,8 +1,17 @@
+import java.util.Collections;
+
 DelaunayTriangulator dt;
 Sala[] salas = new Sala[100];
 
 ArrayList<Sala> mainRooms = new ArrayList<Sala>();
 int mainRoomCount = (int)(salas.length * 0.1);
+
+MinimumSpanningTree MST = new MinimumSpanningTree();
+
+ArrayList<Edge> usingEdges = new ArrayList<Edge>();
+
+boolean fimDistanciamento = false;
+boolean once = true;
 
 void setup() {
   background(125);
@@ -27,15 +36,56 @@ void draw() {
   for (int j = 0; j < mainRoomCount; j++) {
     centers[j] =  mainRooms.get(j).center;
   }
+
   Triangulate(centers);
-  //draw();
 
   if (dt != null) {
     //for (Triangle t : dt.triangles) {
-      //t.DrawCircumcircle(this);
-   // }
+    //t.DrawCircumcircle(this);
+    // }
     for (Triangle t : dt.triangles) {
-      t.DrawEdges(this);
+      t.DrawEdges();
+    }
+  }
+
+
+  ArrayList<PVector> vert = new ArrayList<PVector>();
+  for (int i = 0; i < dt.points.length; i++) {
+    vert.add(dt.points[i]);
+  }
+  MST.vertices = vert;
+  MST.Update();
+
+  if (fimDistanciamento) {
+    fimDistanciamento = false;
+    for (Edge e : MST.edges) {
+      usingEdges.add(e);
+    }
+
+    int passable = round(dt.edges.size() * 0.1);
+    for (int k = 0; k < passable; k++) {
+      Collections.shuffle(dt.edges);
+      //Checar se o add do dt já existe no usingEdges
+      usingEdges.add(dt.edges.get(k));
+    }
+  }
+
+  for (Edge e : usingEdges) {
+    e.Update();
+  }
+
+  if (!fimDistanciamento) {
+    int count = 0;
+    for (Sala e : salas) {
+      if (e.GetEscapeDir().mag() == 0) {
+        count++;
+      }
+      if (count == salas.length) {
+        if (once) {
+          once = false;
+          fimDistanciamento = true;
+        }
+      }
     }
   }
 }

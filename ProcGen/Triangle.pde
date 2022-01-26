@@ -23,9 +23,9 @@ class Triangle {
     // x = (b1 - b2) / (m2 - m1)
     float x = (bAB - bBC) / (slopeBC - slopeAB);
     PVector circumcenter = new PVector(
-      x,
+      x, 
       (slopeAB * x) + bAB
-    );
+      );
 
     return circumcenter;
   }
@@ -58,9 +58,9 @@ class Triangle {
   public PVector Midpoint(PVector a, PVector b) {
     // midpoint is the average of x & y coordinates
     return new PVector(
-      (a.x + b.x) / 2,
+      (a.x + b.x) / 2, 
       (a.y + b.y) / 2
-    );
+      );
   }
 
   // returns the slope of the line between two points
@@ -89,16 +89,19 @@ class Triangle {
 
   // draw the triangle to the specified applet window
   public void Draw(PApplet app) {
-    DrawEdges(app);
+    DrawEdges();
     DrawCircumcircle(app);
   }
 
-  public void DrawEdges(PApplet app) {
+  public void DrawEdges() {
     int next;
-    app.stroke(0, 0, 0);
     for (int i = 0; i < points.length; i++) {
       next = i == points.length - 1 ? 0 : i + 1;
-      app.line(points[i].x, points[i].y, points[next].x, points[next].y);
+      //line(points[i].x, points[i].y, points[next].x, points[next].y);
+      Edge e = new Edge(new PVector(points[i].x, points[i].y), new PVector(points[next].x, points[next].y));
+      if (!dt.edges.contains(e)) {
+        dt.edges.add(e);
+      }
     }
   }  
 

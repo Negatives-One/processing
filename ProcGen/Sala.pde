@@ -6,6 +6,8 @@ class Sala {
 
   boolean isMain = false;
 
+
+
   Sala(PVector _pos, int _width, int _height) {
     largura = _width;
     altura = _height;
@@ -20,10 +22,13 @@ class Sala {
     if (overlappingSalas.size() > 0) {
       pos.add(GetEscapeDir());
     }
-    if (isMain)
-      fill(255, 0, 0);
-    else
-      fill(255);
+    if (isMain) {
+      fill(255, 0, 0, 255);
+      stroke(0, 255);
+    } else {
+      fill(255, 125);
+      stroke(0, 125);
+    }
     rect(pos.x, pos.y, largura, altura);
     center = new PVector(pos.x + largura/2, pos.y + altura/2);
   }

@@ -1,6 +1,7 @@
 public class DelaunayTriangulator {
   PVector[] points;
   ArrayList<Triangle> triangles;
+  ArrayList<Edge> edges = new ArrayList<Edge>();
 
   // sort points in clockwise order (in place)
   // insertion sort

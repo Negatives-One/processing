@@ -14,4 +14,8 @@ class Edge {
     p1 = a;
     p2 = b;
   }
+  
+  public void Update(){
+   line(p1.x, p1.y, p2.x, p2.y); 
+  }
 }
